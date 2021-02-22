@@ -1,0 +1,68 @@
+.login{
+font-family: Rubik;
+font-style: normal;
+font-weight: bold;
+
+/* identical to box height */
+
+text-align: center;
+letter-spacing: -0.165px;
+
+color: #7E98DF;
+}
+.bot{
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+}
+.fontall{
+    font-family: Rubik;
+}
+
+.cardbody{
+box-shadow: 0px 20px 20px rgba(126, 152, 223, 0.05);
+
+}
+.colorB{
+    background: #E5E5E5;
+}
+.btnlogin{
+background: #7E98DF !important;
+border-radius: 70px !important;
+height: 65px;
+}
+.btngoogle{
+    background: #FFFFFF !important;
+    border: 1px solid #7E98DF !important;
+    box-sizing: border-box !important;
+    border-radius: 70px !important;
+    height: 65px;
+}
+.form{
+    border-bottom: 1px solid #232323 !important;
+    border-top: 0 !important;
+    border-left: 0 !important;
+    border-right: 0 !important;
+}
+.home{
+font-style: normal;
+font-weight: 500;
+font-size: 29px;
+line-height: 34px;
+text-align: center;
+letter-spacing: -0.165px;
+
+color: #7E98DF;
+}
+
+.btnflt{
+    background: #7E98DF !important;
+border-radius:70px !important;
+}
+div.inline { float:right; }
+div.inline2 { float:left; }
+
+.scroll{
+    overflow-y: scroll; 
+    height:400px;
+}

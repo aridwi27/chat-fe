@@ -1,0 +1,528 @@
+<template>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-3">
+        <div class="row">
+          <div class="col-12">
+            <router-link to="/home" class=""
+              ><p class="float-left d-inline">Home</p></router-link
+            >
+            <h4
+              class="text-center d-inline"
+              style="color: #7e98df; text-align: center"
+            >
+              @{{ detailProfile.username }}
+            </h4>
+            <p
+              class="float-right d-inline"
+              style="color: red"
+              @click="logout()"
+            >
+              Log Out
+            </p>
+          </div>
+          <div class="col-12 mt-5">
+            <div v-if="detailProfile.image === null">
+              <b-dropdown
+                size="lg"
+                class="float-left mb-3 col-12"
+                variant="link"
+                right
+                text="Right align"
+                toggle-class="text-decoration-none"
+                no-caret
+              >
+                <template #button-content>
+                  <img
+                    src="../assets/img/default.png"
+                    style="max-width: 100px; border-radius: 30px"
+                  />
+                </template>
+                <b-dropdown-form>
+                  <b-form-group
+                    label="image"
+                    label-for="image"
+                    @submit.stop.prevent
+                  >
+                    <b-form-file
+                      v-model="formProfile.image"
+                      id="image"
+                      placeholder="image"
+                    ></b-form-file>
+                  </b-form-group>
+                  <b-button
+                    variant="primary"
+                    size="sm"
+                    @click="sendUploadImage()"
+                    >save</b-button
+                  >
+                </b-dropdown-form>
+              </b-dropdown>
+            </div>
+            <div v-else>
+              <b-dropdown
+                size="lg"
+                class="float-left mb-3 col-12"
+                variant="link"
+                right
+                text="Right align"
+                toggle-class="text-decoration-none"
+                no-caret
+              >
+                <template #button-content>
+                  <img
+                    :src="`http://localhost:3000/image/${detailProfile.image}`"
+                    style="max-width: 100px; border-radius: 30px"
+                  />
+                </template>
+                <b-dropdown-form>
+                  <b-form-group
+                    label="image"
+                    label-for="image"
+                    @submit.stop.prevent
+                  >
+                    <b-form-file
+                      v-model="formProfile.image"
+                      id="image"
+                      placeholder="image"
+                    ></b-form-file>
+                  </b-form-group>
+                  <b-button
+                    variant="primary"
+                    size="sm"
+                    @click="sendUploadImage()"
+                    >save</b-button
+                  >
+                </b-dropdown-form>
+              </b-dropdown>
+              <!-- <img
+                :src="`http://localhost:3000/image/${detailProfile.image}`"
+                style="max-width: 100px; border-radius: 30px"
+              /> -->
+            </div>
+            <div class="col-12 mt-3 mb-3">
+              <!-- <h3 class="font-weight-bold">{{ detailProfile.name }}</h3> -->
+              <b-dropdown
+                size="sm"
+                class="float-left mb-3 col-12"
+                variant="link"
+                right
+                text="Right align"
+                toggle-class="text-decoration-none"
+                no-caret
+              >
+                <template #button-content>
+                  <h3 class="font-weight-bold" style="color: rgb(0, 0, 0)">
+                    {{ detailProfile.name }}
+                  </h3>
+                </template>
+                <b-dropdown-form>
+                  <b-form-group
+                    label="name"
+                    label-for="name"
+                    @submit.stop.prevent
+                  >
+                    <b-form-input
+                      v-model="formProfile.name"
+                      id="name"
+                      size="sm"
+                      placeholder="name"
+                    ></b-form-input>
+                  </b-form-group>
+
+                  <b-button
+                    variant="primary"
+                    size="sm"
+                    @click="sendUploadName()"
+                    >save</b-button
+                  >
+                </b-dropdown-form>
+              </b-dropdown>
+              <p style="color: #848484">@{{ detailProfile.username }}</p>
+            </div>
+            <div class="col-12" style="margin-top: 20%">
+              <h3 class="font-weight-bold text-left">Account</h3>
+              <p class="text-left">+62 {{ detailProfile.phone }}</p>
+            </div>
+            <b-dropdown
+              size="sm"
+              class="float-left mb-3"
+              variant="link"
+              right
+              text="Right align"
+              toggle-class="text-decoration-none"
+              no-caret
+            >
+              <template #button-content>
+                <p class="text-left">Tap to change phone number</p>
+              </template>
+              <b-dropdown-form>
+                <b-form-group
+                  label="Phone"
+                  label-for="dropdown-form-email"
+                  @submit.stop.prevent
+                >
+                  <b-form-input
+                    v-model="formProfile.phone"
+                    id="dropdown-form-email"
+                    type="number"
+                    size="sm"
+                    placeholder="phone"
+                  ></b-form-input>
+                </b-form-group>
+
+                <b-button variant="primary" size="sm" @click="sendUploadPhone()"
+                  >save</b-button
+                >
+              </b-dropdown-form>
+            </b-dropdown>
+            <div
+              class="float-left mb-4"
+              style="border: 2px solid #f6f6f6; width: 100%"
+            ></div>
+            <div class="float-left mb-2">
+              <p class="font-weight-bold" style="background: #f6f6f6">
+                @{{ detailProfile.username }}
+              </p>
+              <b-dropdown
+                size="sm"
+                class="float-left mb-3"
+                variant="link"
+                right
+                text="Right align"
+                toggle-class="text-decoration-none"
+                no-caret
+              >
+                <template #button-content>
+                  <p style="color: #848484">username</p>
+                </template>
+                <b-dropdown-form>
+                  <b-form-group
+                    label="Username"
+                    label-for="Username"
+                    @submit.stop.prevent
+                  >
+                    <b-form-input
+                      v-model="formProfile.username"
+                      id="Username"
+                      size="sm"
+                      placeholder="Username"
+                    ></b-form-input>
+                  </b-form-group>
+
+                  <b-button
+                    variant="primary"
+                    size="sm"
+                    @click="sendUploadUsername()"
+                    >save</b-button
+                  >
+                </b-dropdown-form>
+              </b-dropdown>
+              <!-- <p style="color: #848484">username</p> -->
+            </div>
+            <div
+              class="float-left mb-4"
+              style="border: 2px solid #f6f6f6; width: 100%"
+            ></div>
+          </div>
+          <div class="col-12">
+            <b-dropdown
+              size="sm"
+              class="float-left mb-3"
+              variant="link"
+              right
+              text="Right align"
+              toggle-class="text-decoration-none"
+              no-caret
+            >
+              <template #button-content>
+                <p class="text-left">Tap to change koordinat</p>
+              </template>
+              <b-dropdown-form>
+                <b-form-group label="lat" label-for="lat" @submit.stop.prevent>
+                  <b-form-input
+                    v-model="formProfile.lat"
+                    id="lat"
+                    size="sm"
+                    :placeholder="detailProfile.lat"
+                  ></b-form-input>
+                </b-form-group>
+
+                <b-form-group label="lng" label-for="lng" @submit.stop.prevent>
+                  <b-form-input
+                    v-model="formProfile.lng"
+                    id="lng"
+                    size="sm"
+                    :placeholder="detailProfile.lng"
+                  ></b-form-input>
+                </b-form-group>
+
+                <b-button
+                  variant="primary"
+                  size="sm"
+                  @click="sendUploadKoordinat()"
+                  >save</b-button
+                >
+              </b-dropdown-form>
+            </b-dropdown>
+          </div>
+          <div
+            class="col-12"
+            v-if="(detailProfile.lat === null) & (detailProfile.lng === null)"
+          >
+            <googleMapMaps
+              :center="{ lat: -1.2432859348860335, lng: 116.90731826107266 }"
+              :zoom="12"
+              class="maps mb-5"
+            >
+              <googleMapMarker
+                :position="{
+                  lat: -1.2432859348860335,
+                  lng: 116.90731826107266,
+                }"
+              >
+              </googleMapMarker>
+            </googleMapMaps>
+          </div>
+          <div class="col-12" v-else>
+            <googleMapMaps
+              :center="{
+                lat: parseFloat(detailProfile.lat),
+                lng: parseFloat(detailProfile.lng),
+              }"
+              :zoom="12"
+              class="maps mb-5"
+            >
+              <googleMapMarker
+                :position="{
+                  lat: parseFloat(detailProfile.lat),
+                  lng: parseFloat(detailProfile.lng),
+                }"
+              >
+              </googleMapMarker>
+            </googleMapMaps>
+          </div>
+        </div>
+      </div>
+      <div class="col-9" style="background: #fafafa">
+        <h2
+          v-if="chat.length <= 0"
+          class="text-center"
+          style="color: #848484; margin-top: 30%; margin-bottom: 30%"
+        >
+          Please select a chat to start messaging
+        </h2>
+        <div class="" v-else>
+          <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-8">
+                      <img
+                        src="../assets/img/default.png"
+                        alt=""
+                        class="float-left"
+                        style="
+                          max-width: 64px;
+                          width: 100%;
+                          max-height: 100px;
+                          height: 100%;
+                          border-radius: 20px;
+                        "
+                      />
+                      <p class="text-left">mama</p>
+                    </div>
+                    <div class="col-2"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12" v-for="(item, i) in chat" :key="i">
+              <div v-if="item.from_name === name" class="text-right">
+                <div class="inline py-2" v-if="item.user_image === null">
+                  <img
+                    src="../assets/img/default.png"
+                    style="max-width: 50px"
+                  />
+                </div>
+                <div
+                  class="card inline mt-2"
+                  style="
+                    background: #ffffff;
+                    border-radius: 35px 10px 35px 35px;
+                  "
+                >
+                  <p class="card-text px-2 py-2">{{ item.message }}</p>
+                </div>
+              </div>
+              <div v-else class="text-left">
+                <div class="inline2 py-2" v-if="item.user_image === null">
+                  <img
+                    src="../assets/img/default.png"
+                    style="max-width: 50px"
+                  />
+                </div>
+                <div
+                  class="card inline2 mt-2"
+                  style="
+                    background: #7e98df;
+                    border-radius: 35px 35px 35px 10px;
+                  "
+                >
+                  <p class="card-text px-2 py-2">{{ item.message }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-12">
+              <form action="" @submit.prevent="sendMsg()">
+                <input type="text" class="form-control" v-model="text" />
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import { mapGetters, mapActions } from 'vuex'
+import io from 'socket.io-client'
+import * as VueGoogleMaps from 'vue2-google-maps'
+export default {
+  data () {
+    return {
+      socket: io('http://localhost:3000'),
+      text: '',
+      content: [],
+      data: '',
+      users: [],
+      chat: [],
+      to: '',
+      to_id: '',
+      idDetail: this.$route.params.id,
+      formProfile: {
+        name: '',
+        username: '',
+        phone: '',
+        image: '',
+        lat: '',
+        lng: ''
+      }
+    }
+  },
+  components: {
+    googleMapMaps: VueGoogleMaps.Map,
+    googleMapMarker: VueGoogleMaps.Marker
+  },
+  computed: {
+    ...mapGetters({
+      name: 'auth/getUserName',
+      id: 'auth/getUserID',
+      room: 'auth/getRoom',
+      image: 'auth/getImage',
+      phone: 'auth/getPhone',
+      username: 'auth/getUsername',
+      detailProfile: 'auth/getDetail'
+    })
+  },
+  methods: {
+    ...mapActions({
+      detail: 'auth/actionGetDetail',
+      update: 'auth/updateProfile',
+      actionLogout: 'auth/logout'
+    }),
+    logout () {
+      this.actionLogout()
+      this.$router.push('/login')
+    },
+    sendUploadPhone () {
+      const data = new FormData()
+      data.append('phone', this.formProfile.phone)
+      this.update(data)
+      this.$router.push('/home')
+    },
+    sendUploadImage () {
+      const data = new FormData()
+      data.append('image', this.formProfile.image)
+      this.update(data).then((response) => {
+        // console.log(response)
+        if (response === 'Error File Type') {
+          this.$swal.close()
+          this.$swal('Error File Type', 'Please Uload Again ', 'error')
+        } else {
+          this.$swal.close()
+          this.$swal('Upload File success', ' ', 'success')
+          this.$router.push('/home')
+        }
+      })
+    },
+    sendUploadUsername () {
+      const user = { username: this.formProfile.username }
+      this.update(user)
+      this.$router.push('/home')
+    },
+    sendUploadName () {
+      const user = { name: this.formProfile.name }
+      this.update(user)
+      this.$router.push('/home')
+    },
+    sendUploadKoordinat () {
+      const koordinat = {
+        lat: this.formProfile.lat,
+        lng: this.formProfile.lng
+      }
+      this.update(koordinat)
+      this.$router.push('/home')
+    },
+    imageUpload (el) {
+      this.formProfile.image = el.target.files[0]
+    },
+    joinRoom () {
+      this.socket.emit('join-room', this.room)
+    },
+    getListUsers () {
+      this.socket.emit('get-list-users', this.id, this.room)
+    },
+    resGetListUsers () {
+      this.socket.on('res-get-list-users', (users) => {
+        this.users = users
+      })
+    },
+    getListChat (idUser, name) {
+      this.to = name
+      this.to_id = idUser
+      this.socket.emit('get-list-chat', { id_from: this.id, id_to: idUser, room_id: this.room })
+    },
+    resGetListChat () {
+      this.socket.on('res-get-list-chat', (chat) => {
+        this.chat = chat
+      })
+    },
+    sendMsg () {
+      const data = {
+        from: this.id,
+        to: this.to_id,
+        msg: this.text
+      }
+      this.socket.emit('send-message', data)
+      this.text = ''
+    }
+  },
+  mounted () {
+    this.detail(this.idDetail)
+    this.joinRoom()
+    this.getListUsers()
+    this.resGetListUsers()
+    this.resGetListChat()
+  }
+}
+</script>
+
+<style scoped>
+.maps {
+  width: 100%;
+  height: 300px;
+}
+</style>
