@@ -14,7 +14,7 @@ It is a real-time chat application that makes it easy for users to communicate d
 
 ![chat](https://user-images.githubusercontent.com/44130582/111242988-34aede80-863b-11eb-9b46-f1da26415597.PNG)
 
-![profile](https://user-images.githubusercontent.com/44130582/111243002-38426580-863b-11eb-86ad-e6384e0acbcd.PNG)
+![profile2](https://user-images.githubusercontent.com/44130582/111249397-9a549800-8646-11eb-8e4d-9d64ec376dcc.PNG)
 
 ## Features
 - Login
