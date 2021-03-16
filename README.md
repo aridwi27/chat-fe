@@ -12,7 +12,7 @@ It is a real-time chat application that makes it easy for users to communicate d
 
 ![Capture](https://user-images.githubusercontent.com/44130582/111242956-25c82c00-863b-11eb-9b1e-8f78a57e7f03.PNG)
 
-![chat](https://user-images.githubusercontent.com/44130582/111242988-34aede80-863b-11eb-9b46-f1da26415597.PNG)
+![chatt2](https://user-images.githubusercontent.com/44130582/111249556-da1b7f80-8646-11eb-96c5-9b3ff97ba590.PNG)
 
 ![profile2](https://user-images.githubusercontent.com/44130582/111249397-9a549800-8646-11eb-8e4d-9d64ec376dcc.PNG)
 
