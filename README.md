@@ -1,6 +1,20 @@
 # chat
 It is a real-time chat application that makes it easy for users to communicate directly and has a profile feature and can view friends' profiles. Built using socket io with the vue js framework and node js and using maps
 
+
+## Features
+- Login
+- Register
+- Upload Image Multer
+- Chat privite
+- Profile
+- Profile Friend
+- update Profile
+- maps
+- marker maps
+- update marker
+
+
 ## NPM Packages Used
 - Express
 - Socket IO- Client
@@ -15,18 +29,6 @@ It is a real-time chat application that makes it easy for users to communicate d
 ![chatt2](https://user-images.githubusercontent.com/44130582/111249556-da1b7f80-8646-11eb-96c5-9b3ff97ba590.PNG)
 
 ![profile2](https://user-images.githubusercontent.com/44130582/111249397-9a549800-8646-11eb-8e4d-9d64ec376dcc.PNG)
-
-## Features
-- Login
-- Register
-- Upload Image Multer
-- Chat privite
-- Profile
-- Profile Friend
-- update Profile
-- maps
-- marker maps
-- update marker
 
 
 ## How to install
