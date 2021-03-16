@@ -68,7 +68,7 @@
             <h5>
               Don’t have an account?
               <span
-                ><router-link to="/register" style="color: #7e98df"
+                ><router-link to="/sigup" style="color: #7e98df"
                   >Sign Up</router-link
                 ></span
               >
@@ -109,7 +109,6 @@ export default {
         id: this.id
       }
       this.Actionlogin(data).then((response) => {
-        // console.log(response)
         if (response === 'Email Not Registered') {
           this.$swal.close()
           this.$swal('Email Not Registered', 'Please Check your Email ', 'error')

@@ -11,7 +11,7 @@
       <div class="card-body" style="padding-left: 10%; padding-right: 10%">
         <div class="row">
           <div class="col-12 text-center">
-            <router-link to="/login" class="float-left"
+            <router-link to="/" class="float-left"
               ><p style="color: #7e98df">Login</p></router-link
             >
             <h2 class="login">Register</h2>
@@ -122,7 +122,7 @@ export default {
         } else {
           this.$swal.close()
           this.$swal('Register Email Success', 'You can Login Now ', 'success')
-          this.$router.push('/login')
+          this.$router.push('/')
         }
       })
     }

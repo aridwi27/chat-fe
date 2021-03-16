@@ -10,7 +10,9 @@ import * as VueGoogleMaps from 'vue2-google-maps'
 import 'sweetalert2/dist/sweetalert2.min.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import moment from 'vue-moment'
 
+Vue.use(moment)
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.use(css)

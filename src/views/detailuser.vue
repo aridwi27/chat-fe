@@ -101,7 +101,7 @@
             </div>
             <div v-else>
               <img
-                :src="`http://localhost:3000/image/${detailProfile.image}`"
+                :src="`${webURL}/image/${detailProfile.image}`"
                 style="max-width: 100px; border-radius: 30px"
               />
             </div>
@@ -215,7 +215,8 @@ import * as VueGoogleMaps from 'vue2-google-maps'
 export default {
   data () {
     return {
-      socket: io('http://localhost:3000'),
+      socket: io(process.env.VUE_APP_URL),
+      webURL: process.env.VUE_APP_URL,
       text: '',
       content: [],
       data: '',
@@ -257,78 +258,11 @@ export default {
     }),
     logout () {
       this.actionLogout()
-      this.$router.push('/login')
-    },
-    sendUploadPhone () {
-      const data = new FormData()
-      data.append('phone', this.formProfile.phone)
-      this.update(data)
-      this.$router.push('/home')
-    },
-    sendUploadImage () {
-      const data = new FormData()
-      data.append('image', this.formProfile.image)
-      this.update(data)
-      this.$router.push('/home')
-    },
-    sendUploadUsername () {
-      const user = { username: this.formProfile.username }
-      this.update(user)
-      this.$router.push('/home')
-    },
-    sendUploadName () {
-      const user = { name: this.formProfile.name }
-      this.update(user)
-      this.$router.push('/home')
-    },
-    sendUploadKoordinat () {
-      const koordinat = {
-        lat: this.formProfile.lat,
-        lng: this.formProfile.lng
-      }
-      this.update(koordinat)
-      this.$router.push('/home')
-    },
-    imageUpload (el) {
-      this.formProfile.image = el.target.files[0]
-    },
-    joinRoom () {
-      this.socket.emit('join-room', this.room)
-    },
-    getListUsers () {
-      this.socket.emit('get-list-users', this.id, this.room)
-    },
-    resGetListUsers () {
-      this.socket.on('res-get-list-users', (users) => {
-        this.users = users
-      })
-    },
-    getListChat (idUser, name) {
-      this.to = name
-      this.to_id = idUser
-      this.socket.emit('get-list-chat', { id_from: this.id, id_to: idUser, room_id: this.room })
-    },
-    resGetListChat () {
-      this.socket.on('res-get-list-chat', (chat) => {
-        this.chat = chat
-      })
-    },
-    sendMsg () {
-      const data = {
-        from: this.id,
-        to: this.to_id,
-        msg: this.text
-      }
-      this.socket.emit('send-message', data)
-      this.text = ''
+      this.$router.push('/')
     }
   },
   mounted () {
     this.detail(this.idDetail)
-    this.joinRoom()
-    this.getListUsers()
-    this.resGetListUsers()
-    this.resGetListChat()
   }
 }
 </script>

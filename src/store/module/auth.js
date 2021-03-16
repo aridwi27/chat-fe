@@ -10,8 +10,9 @@ const moduleAuth = {
       image: localStorage.getItem('image') || null,
       phone: localStorage.getItem('phone') || null,
       username: localStorage.getItem('username') || null,
-      profile: {}
-
+      profile: {},
+      userProfile: {},
+      webURL: process.env.VUE_APP_URL
     }
   },
   mutations: {
@@ -38,13 +39,15 @@ const moduleAuth = {
     },
     setDetailProfile (state, payload) {
       state.profile = payload
+    },
+    setDetailUser (state, payload) {
+      state.userProfile = payload
     }
   },
   actions: {
     login (context, data) {
       return new Promise((resolve, reject) => {
-        axios.post('http://localhost:3000/login', data).then((response) => {
-          console.log(response)
+        axios.post(`${context.state.webURL}/login`, data).then((response) => {
           localStorage.setItem('token', response.data.token)
           localStorage.setItem('name', response.data.name)
           localStorage.setItem('id', response.data.id)
@@ -62,13 +65,12 @@ const moduleAuth = {
           resolve(response.data.msg)
         }).catch((err) => {
           console.log(err)
-          // console.log(err.data.code)
         })
       })
     },
     register (context, data) {
       return new Promise((resolve, reject) => {
-        axios.post('http://localhost:3000/register', data).then((response) => {
+        axios.post(`${context.state.webURL}/register`, data).then((response) => {
           resolve(response.data.msg)
         }).catch((error) => {
           reject(error.response.data)
@@ -76,25 +78,16 @@ const moduleAuth = {
       })
     },
     actionGetDetail (items, id) {
-      axios.get('http://localhost:3000/profile/' + id, { headers: { token: items.rootState.auth.token } }).then((response) => {
-        console.log(response.data.data)
+      axios.get(`${items.state.webURL}/profile/${id}`, { headers: { token: items.rootState.auth.token } }).then((response) => {
         items.commit('setDetailProfile', response.data.data)
-      }).catch((error) => {
-        console.log(error)
-      })
-    },
-    actionGetDetailUsers (items, id) {
-      axios.get('http://localhost:3000/profile/' + id, { headers: { token: items.rootState.auth.token } }).then((response) => {
-        console.log(response.data.data)
-        items.commit('setDetailProfile', response.data.data)
+        items.commit('setDetailUser', response.data.data)
       }).catch((error) => {
         console.log(error)
       })
     },
     updateProfile (items, data) {
       return new Promise((resolve, reject) => {
-        axios.patch('http://localhost:3000/update/' + items.getters.getUserID, data, { headers: { token: items.rootState.auth.token } }).then((response) => {
-          console.log(response.data)
+        axios.patch(`${items.state.webURL}/update/${items.getters.getUserID}`, data, { headers: { token: items.rootState.auth.token } }).then((response) => {
           resolve(response.data.data)
         })
       })
@@ -127,7 +120,8 @@ const moduleAuth = {
     getImage: state => state.image,
     getPhone: state => state.phone,
     getUsername: state => state.username,
-    getDetail: state => state.profile
+    getDetail: state => state.profile,
+    getDetailUser: state => state.userProfile
   }
 }
 export default moduleAuth

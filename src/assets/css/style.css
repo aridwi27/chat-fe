@@ -62,7 +62,11 @@ border-radius:70px !important;
 div.inline { float:right; }
 div.inline2 { float:left; }
 
-.scroll{
-    overflow-y: scroll; 
-    height:400px;
+.scrollContent{
+    overflow-y: auto; 
+    height:600px;
 }
+ .scrollChat{
+        height: 650px;
+        overflow: auto;
+ }

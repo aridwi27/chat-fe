@@ -3,7 +3,6 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import login from '../views/login.vue'
 import register from '../views/register.vue'
-import profile from '../views/profile.vue'
 import users from '../views/detailuser.vue'
 import store from '../store/index'
 
@@ -17,20 +16,14 @@ const routes = [
     meta: { auth: true }
   },
   {
-    path: '/login',
+    path: '/',
     name: 'login',
     component: login
   },
   {
-    path: '/register',
+    path: '/sigup',
     name: 'register',
     component: register
-  },
-  {
-    path: '/profile/:id',
-    name: 'profile',
-    component: profile,
-    meta: { auth: true }
   },
   {
     path: '/users/:id',
@@ -54,13 +47,12 @@ router.beforeEach((to, from, next) => {
     } else {
       alert('you dont have access')
       next({
-        path: '/login'
+        path: '/'
       })
     }
   } else {
     next()
   }
-  // console.log(to.matched[0].meta.auth)
 })
 
 export default router
