@@ -30,6 +30,9 @@ It is a real-time chat application that makes it easy for users to communicate d
 
 ![profile2](https://user-images.githubusercontent.com/44130582/111249397-9a549800-8646-11eb-8e4d-9d64ec376dcc.PNG)
 
+![friend profile](https://user-images.githubusercontent.com/44130582/111252188-88292880-864b-11eb-9786-c7fdd18d7837.PNG)
+
+
 
 ## How to install
 1. Open terminal in your directory
