@@ -28,6 +28,14 @@ It is a real-time chat application that makes it easy for users to communicate d
 - marker maps
 - update marker
 
+
+## How to install
+1. Open terminal in your directory
+2. Clone this repository
+```
+https://github.com/aridwi27/chat-BE
+```
+
 ## Project setup
 ```
 npm install
